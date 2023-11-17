@@ -4,7 +4,7 @@ const NextFederationPlugin = require("@module-federation/nextjs-mf");
 let host = "http://localhost:3001";
 
 if (process.env.NODE_ENV === "production") {
-  host = "https://home.vercel.app";
+  host = "https://common-omega.vercel.app";
 }
 
 const nextConfig = {

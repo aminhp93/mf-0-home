@@ -1,10 +1,20 @@
 import dynamic from "next/dynamic";
 
-const BMS = dynamic(
+const Common = dynamic(
   () =>
     import(
       // @ts-ignore
       "common/title"
+    ),
+  {
+    ssr: false,
+  }
+) as any;
+const Items = dynamic(
+  () =>
+    import(
+      // @ts-ignore
+      "items/list"
     ),
   {
     ssr: false,
@@ -16,7 +26,9 @@ const Page = () => {
 
   return (
     <div>
-      host <BMS />
+      <div>Home</div>
+      <Common />
+      <Items />
     </div>
   );
 };

@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
 
-let host = "http://localhost:3001";
+let hostCommon = "http://localhost:3001";
+let hostItems = "http://localhost:3002";
 
 if (process.env.NODE_ENV === "production") {
-  host = "https://common-omega.vercel.app";
+  hostCommon = "https://common-omega.vercel.app";
+  hostItems = "https://items-lilac.vercel.app";
 }
 
 const nextConfig = {
@@ -16,9 +18,8 @@ const nextConfig = {
         name: "home",
         filename: "static/chunks/remoteEntry.js",
         remotes: {
-          common: `common@${host}/_next/static/chunks/remoteEntry.js`,
-          // authentication:
-          //   "authentication@http://localhost:3002/_next/static/chunks/remoteEntry.js",
+          common: `common@${hostCommon}/_next/static/chunks/remoteEntry.js`,
+          items: `items@${hostItems}/_next/static/chunks/remoteEntry.js`,
         },
         exposes: {},
         shared: {},

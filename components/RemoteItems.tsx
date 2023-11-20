@@ -12,8 +12,8 @@ const Page = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  if (!isClient) return null;
-  if (!xxx) return;
+  if (!isClient) return <div></div>;
+  if (!xxx) return <div></div>;
 
   return (
     <div>

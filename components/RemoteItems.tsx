@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 let xxx: any;
 // @ts-ignore
 import("items/components").then((res) => {
-  //   console.log(res);
+  console.log(res);
   xxx = res;
 });
 
@@ -12,6 +12,7 @@ const Page = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+  console.log({ isClient, xxx });
   if (!isClient) return <div></div>;
   if (!xxx) return <div></div>;
 

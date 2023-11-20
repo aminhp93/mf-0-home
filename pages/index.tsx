@@ -1,4 +1,9 @@
 import dynamic from "next/dynamic";
+import("@/components/RemoteItems");
+
+const RemoteItems = dynamic(() => import("@/components/RemoteItems") as any, {
+  ssr: false,
+});
 
 const Common = dynamic(
   () =>
@@ -10,25 +15,13 @@ const Common = dynamic(
     ssr: false,
   }
 ) as any;
-const Items = dynamic(
-  () =>
-    import(
-      // @ts-ignore
-      "items/list"
-    ),
-  {
-    ssr: false,
-  }
-) as any;
 
 const Page = () => {
-  // console.log("hello world");
-
   return (
     <div>
       <div>Home</div>
       <Common />
-      <Items />
+      <RemoteItems />
     </div>
   );
 };

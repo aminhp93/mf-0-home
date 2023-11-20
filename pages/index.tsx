@@ -20,7 +20,7 @@ const Page = () => {
   return (
     <div>
       <div>Home</div>
-      <Common />
+      {/* <Common /> */}
       <RemoteItems />
     </div>
   );

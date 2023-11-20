@@ -1,12 +1,18 @@
+import { useEffect, useState } from "react";
 // load content of all files in components folder
 let xxx: any;
 // @ts-ignore
 import("items/components").then((res) => {
-  console.log(res);
+  //   console.log(res);
   xxx = res;
 });
 
 const Page = () => {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  if (!isClient) return null;
   if (!xxx) return;
 
   return (

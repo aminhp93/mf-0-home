@@ -1,12 +1,33 @@
 import dynamic from "next/dynamic";
 
-import RemoteItems from "@/components/RemoteItems";
-
-const Common = dynamic(
+// import RemoteItems from "@/components/RemoteItems";
+const RemoteItems = dynamic(
   () =>
     import(
       // @ts-ignore
-      "common/title"
+      "items/index"
+    ),
+  {
+    ssr: false,
+  }
+) as any;
+
+const RemoteCommon = dynamic(
+  () =>
+    import(
+      // @ts-ignore
+      "common/index"
+    ),
+  {
+    ssr: false,
+  }
+) as any;
+
+const RemoteProperty = dynamic(
+  () =>
+    import(
+      // @ts-ignore
+      "property/index"
     ),
   {
     ssr: false,
@@ -17,8 +38,9 @@ const Page = () => {
   return (
     <div>
       <div>Home</div>
-      <Common />
+      <RemoteCommon />
       <RemoteItems />
+      <RemoteProperty />
     </div>
   );
 };

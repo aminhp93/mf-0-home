@@ -1,40 +1,14 @@
-import dynamic from "next/dynamic";
-
-// import RemoteItems from "@/components/RemoteItems";
-const RemoteItems = dynamic(
-  () =>
-    import(
-      // @ts-ignore
-      "items/index"
-    ),
-  {
-    ssr: false,
-  }
-) as any;
-
-const RemoteCommon = dynamic(
-  () =>
-    import(
-      // @ts-ignore
-      "common/index"
-    ),
-  {
-    ssr: false,
-  }
-) as any;
-
-const RemoteProperty = dynamic(
-  () =>
-    import(
-      // @ts-ignore
-      "property/index"
-    ),
-  {
-    ssr: false,
-  }
-) as any;
+import { capitalizeText } from "mf-packages";
+import NoSSR from "react-no-ssr";
+// @ts-ignore
+import RemoteItems from "items/index";
+// @ts-ignore
+import RemoteCommon from "common/index";
+// @ts-ignore
+import RemoteProperty from "property/index";
 
 const Page = () => {
+  console.log(capitalizeText("hello world"));
   return (
     <div>
       <div>Home</div>
@@ -45,4 +19,10 @@ const Page = () => {
   );
 };
 
-export default Page;
+const NoSSRPage = () => (
+  <NoSSR>
+    <Page />
+  </NoSSR>
+);
+
+export default NoSSRPage;

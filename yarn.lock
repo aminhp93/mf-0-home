@@ -2320,10 +2320,10 @@ merge2@^1.3.0, merge2@^1.4.1:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-mf-packages@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/mf-packages/-/mf-packages-0.0.1.tgz#f02fd275d32cb7fcfd6584c66034b3864753eed0"
-  integrity sha512-WlOPQUsl0cNQ2C58KbkX7053wAN2BLWUvhY5NCUiyKo1x+FwpCUdTVWtbBp+0vAUl7KVo0e+hXDWyN+PUXoENA==
+mf-packages@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/mf-packages/-/mf-packages-0.0.2.tgz#afec354164f98dddd5f24a4e2a1168e58063a74a"
+  integrity sha512-yfs6z/gfUJgtuPKABwhBeDRGMW1iw5Sx6kyByZrIhwJmh+CTw1uJ3gijV5821sAxC851cxWBDTsurdY1na25XQ==
   dependencies:
     "@emotion/react" "^11.10.5"
     "@emotion/server" "^11.4.0"

@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { DEFAULT_VIEW } from "./View.constants";
 // @ts-ignore
 import RemoteItems from "items/index";
+import { lazy } from "react";
 
 let remoteListItems: any;
 
@@ -16,7 +17,6 @@ const mapView = (view: any) => {
 };
 
 const View = () => {
-  if (!remoteListItems) return null;
   console.log({ DEFAULT_VIEW, xxx: remoteListItems.getItems() });
 
   const mappedView = mapView(DEFAULT_VIEW);

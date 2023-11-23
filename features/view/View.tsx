@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { DEFAULT_VIEW } from "./View.constants";
 // @ts-ignore
 import RemoteItems from "items/index";
@@ -37,4 +39,6 @@ const View = () => {
   );
 };
 
-export default View;
+export default dynamic(() => Promise.resolve(View), {
+  ssr: false,
+});

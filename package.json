@@ -15,14 +15,19 @@
   "dependencies": {
     "@module-federation/nextjs-mf": "^7.0.8",
     "@mui/material": "^5.14.18",
+    "axios": "^1.6.2",
+    "immer": "^10.0.3",
     "mf-packages": "^0.0.2",
     "next": "13.3.1",
+    "qs": "^6.11.2",
     "react": "^18",
     "react-dom": "^18",
-    "webpack": "^5.89.0"
+    "webpack": "^5.89.0",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/qs": "^6.9.10",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

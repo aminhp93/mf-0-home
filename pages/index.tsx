@@ -7,14 +7,25 @@ import RemoteCommon from "common/index";
 // @ts-ignore
 import RemoteProperty from "property/index";
 import { useRouter } from "next/router";
+import { useDataStore } from "@/features/app-builder/SystemStore";
 
 const IndexPage = () => {
   console.log(capitalizeText("hello world"));
   const router = useRouter();
   console.log(router);
+
+  const controllers = useDataStore((store) => store.controllers);
+  console.log({ controllers });
   return (
     <div>
-      <div>Home</div>
+      <div
+        onClick={() => {
+          // go to view page
+          router.push("/view");
+        }}
+      >
+        Home
+      </div>
 
       <RemoteCommon />
       <RemoteItems />

@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import useAuth from "./useAuth";
 
 const SignInPage = () => {
-  const { signIn } = useAuth();
+  const { login } = useAuth();
 
   const handleSignIn = () => {
-    signIn();
+    login();
   };
 
   return (

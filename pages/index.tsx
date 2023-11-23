@@ -8,6 +8,7 @@ import RemoteCommon from "common/index";
 import RemoteProperty from "property/index";
 import { useRouter } from "next/router";
 import { useDataStore } from "@/features/app-builder/SystemStore";
+import LegacyLayout from "@/features/layout/LegacyLayout";
 
 const IndexPage = () => {
   console.log(capitalizeText("hello world"));
@@ -16,6 +17,8 @@ const IndexPage = () => {
 
   const controllers = useDataStore((store) => store.controllers);
   console.log({ controllers });
+  const systems = useDataStore((store) => store.systems);
+  console.log({ systems });
   return (
     <div>
       <div
@@ -27,9 +30,11 @@ const IndexPage = () => {
         Home
       </div>
 
-      <RemoteCommon />
+      {/* <RemoteCommon />
       <RemoteItems />
-      <RemoteProperty />
+      <RemoteProperty /> */}
+
+      <LegacyLayout />
     </div>
   );
 };

@@ -15,8 +15,11 @@
   "dependencies": {
     "@module-federation/nextjs-mf": "^7.0.8",
     "@mui/material": "^5.14.18",
+    "@react-spring/web": "^9.7.3",
+    "@use-gesture/react": "^10.3.0",
     "axios": "^1.6.2",
     "immer": "^10.0.3",
+    "lodash": "^4.17.21",
     "mf-packages": "^0.0.2",
     "next": "13.3.1",
     "qs": "^6.11.2",
@@ -26,6 +29,7 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/qs": "^6.9.10",
     "@types/react": "^18",

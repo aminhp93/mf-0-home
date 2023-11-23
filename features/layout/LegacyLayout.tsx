@@ -19,6 +19,12 @@ const LegacyLayout = ({ children }: Props) => {
         <ListItem>Alarm statistic</ListItem>
         <ListItem>settings</ListItem>
         <ListItem>tools</ListItem>
+        <ListItem>navigation</ListItem>
+        <ListItem>tag groups</ListItem>
+        <ListItem>journals</ListItem>
+        <ListItem>user log</ListItem>
+        <ListItem>reports</ListItem>
+        <ListItem>alarm settings</ListItem>
       </List>
     </Drawer>
   );
@@ -26,10 +32,24 @@ const LegacyLayout = ({ children }: Props) => {
   const footer = (
     <AppBar
       position="fixed"
-      sx={{ top: "auto", bottom: 0, backgroundColor: "#424242" }}
+      sx={{
+        top: "auto",
+        bottom: 0,
+        backgroundColor: "#424242",
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "row",
+      }}
     >
       <Button onClick={() => setOpenDrawer(true)}>Open</Button>
-      <div>Footer</div>
+      <div>
+        <Button>alarm</Button>
+        <Button>user</Button>
+        <Button>plot</Button>
+        <Button>tag</Button>
+        <Button>app builder</Button>
+        <Button>edit view</Button>
+      </div>
     </AppBar>
   );
 

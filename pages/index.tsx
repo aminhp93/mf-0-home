@@ -9,6 +9,7 @@ import RemoteProperty from "property/index";
 import { useRouter } from "next/router";
 import { useDataStore } from "@/features/app-builder/SystemStore";
 import LegacyLayout from "@/features/layout/LegacyLayout";
+import Link from "next/link";
 
 const IndexPage = () => {
   console.log(capitalizeText("hello world"));
@@ -21,20 +22,23 @@ const IndexPage = () => {
   console.log({ systems });
   return (
     <div>
-      <div
-        onClick={() => {
-          // go to view page
-          router.push("/view");
-        }}
-      >
-        Home
-      </div>
+      <ul>
+        <li>
+          <Link href="/">home</Link>
+        </li>
+        <li>
+          <Link href="/view/123">view id</Link>
+        </li>
+        <li>
+          <Link href="/edit/123">edit id</Link>
+        </li>
+      </ul>
 
       {/* <RemoteCommon />
       <RemoteItems />
       <RemoteProperty /> */}
 
-      <LegacyLayout />
+      {/* <LegacyLayout /> */}
     </div>
   );
 };

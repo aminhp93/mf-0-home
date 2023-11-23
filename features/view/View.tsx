@@ -16,6 +16,7 @@ const mapView = (view: any) => {
 };
 
 const View = () => {
+  if (!remoteListItems) return null;
   console.log({ DEFAULT_VIEW, xxx: remoteListItems.getItems() });
 
   const mappedView = mapView(DEFAULT_VIEW);

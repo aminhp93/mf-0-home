@@ -10,7 +10,9 @@
     "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
     "component": "cypress open --component",
-    "component:headless": "cypress run --component"
+    "component:headless": "cypress run --component",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^7.0.8",
@@ -29,6 +31,14 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/nextjs": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/qs": "^6.9.10",
@@ -38,6 +48,8 @@
     "cypress": "^13.6.0",
     "eslint": "^8",
     "eslint-config-next": "13.3.1",
+    "eslint-plugin-storybook": "^0.6.15",
+    "storybook": "^7.5.3",
     "typescript": "^5"
   }
 }

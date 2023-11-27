@@ -1,20 +1,14 @@
 import { DEFAULT_VIEW } from "@/features/view/View.constants";
-// @ts-ignore
-import RemoteItems from "items/index";
-
 import React, { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
 
 import styles from "@/components/Gesture.module.css";
-
 let remoteListItems: any;
 
-// @ts-ignore
-import("items/listItems").then((res) => {
-  remoteListItems = res.default;
-});
-
+if (typeof window !== "undefined") {
+  remoteListItems = require("items/listItems").default;
+}
 const mapView = (view: any) => {
   return Object.values(view);
 };

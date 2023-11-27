@@ -1,9 +1,11 @@
+import dynamic from "next/dynamic";
 import { DEFAULT_VIEW } from "@/features/view/View.constants";
 import React, { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
-
 import styles from "@/components/Gesture.module.css";
+import Property from "./Property";
+
 let remoteListItems: any;
 
 if (typeof window !== "undefined") {
@@ -77,7 +79,7 @@ const Edit = () => {
       <animated.div className={styles.card} ref={ref} style={style}>
         {mappedView.map((i: any) => {
           let content;
-          if (i.type === "legacy-item") {
+          if (i.type === "legacy-item" && remoteListItems.getItem) {
             const ItemComponent = remoteListItems.getItem(
               i.legacy.itemType
             ).component;
@@ -88,8 +90,11 @@ const Edit = () => {
           return <div key={i.id}>{content}</div>;
         })}
       </animated.div>
+      <Property />
     </div>
   );
 };
 
-export default Edit;
+export default dynamic(() => Promise.resolve(Edit), {
+  ssr: false,
+});

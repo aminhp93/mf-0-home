@@ -3,8 +3,17 @@ import type { AppProps } from "next/app";
 import { AuthProvider } from "@/features/auth/AuthContext";
 import AuthGuard from "@/features/auth/AuthGuard";
 import GuestGuard from "@/features/auth/GuestGuard";
-import { ReactElement, ReactNode, createContext, useEffect } from "react";
+import {
+  ReactElement,
+  ReactNode,
+  createContext,
+  useEffect,
+  Suspense,
+} from "react";
 import type { NextPage } from "next";
+
+// @ts-ignore
+import("items/listItems");
 
 const Guard = ({ children, authGuard, guestGuard }: any) => {
   if (guestGuard) {
@@ -38,7 +47,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <AuthProvider>
       <Guard authGuard={authGuard} guestGuard={guestGuard}>
-        {getLayout(<Component {...pageProps} />)}
+        <Suspense fallback={<div>loadng</div>}>
+          {getLayout(<Component {...pageProps} />)}
+        </Suspense>
       </Guard>
     </AuthProvider>
   );

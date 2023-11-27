@@ -12,9 +12,6 @@ import {
 } from "react";
 import type { NextPage } from "next";
 
-// @ts-ignore
-import("items/listItems");
-
 const Guard = ({ children, authGuard, guestGuard }: any) => {
   if (guestGuard) {
     return <GuestGuard fallback={<div>Loading</div>}>{children}</GuestGuard>;
@@ -47,7 +44,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <AuthProvider>
       <Guard authGuard={authGuard} guestGuard={guestGuard}>
-        <Suspense fallback={<div>loadng</div>}>
+        <Suspense fallback={<div>loadng 1</div>}>
           {getLayout(<Component {...pageProps} />)}
         </Suspense>
       </Guard>

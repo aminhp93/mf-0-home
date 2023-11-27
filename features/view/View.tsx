@@ -7,10 +7,14 @@ import { lazy, useEffect } from "react";
 
 let remoteListItems: any;
 
-// @ts-ignore
-import("items/listItems").then((res) => {
-  remoteListItems = res.default;
-});
+// // @ts-ignore
+// import("items/listItems").then((res) => {
+//   remoteListItems = res.default;
+// });
+
+if (process.browser) {
+  remoteListItems = require("items/listItems").default;
+}
 
 const mapView = (view: any) => {
   return Object.values(view);

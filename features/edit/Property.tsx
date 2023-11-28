@@ -19,8 +19,6 @@ const RemoteProperty = dynamic(
 ) as any;
 
 const Property = () => {
-  console.log(remoteListItems.getItem(TEST.id));
-
   const handleChange = (e: any) => {
     console.log(e);
   };
@@ -38,4 +36,6 @@ const Property = () => {
   );
 };
 
-export default Property;
+export default dynamic(() => Promise.resolve(Property), {
+  ssr: false,
+});

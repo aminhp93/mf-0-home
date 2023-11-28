@@ -1,23 +1,15 @@
 import dynamic from "next/dynamic";
-import { DEFAULT_VIEW } from "@/features/view/View.constants";
 import React, { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
 import styles from "@/components/Gesture.module.css";
-
-let remoteListItems: any;
-
-if (typeof window !== "undefined") {
-  remoteListItems = require("items/listItems").default;
-}
-const mapView = (view: any) => {
-  return Object.values(view);
-};
+import useEditStore from "./store";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
 const Editor = () => {
-  const mappedView = mapView(DEFAULT_VIEW);
+  const selectedItems = useEditStore((state) => state.selectedItems);
+
   useEffect(() => {
     const handler = (e: Event) => e.preventDefault();
     document.addEventListener("gesturestart", handler);
@@ -76,17 +68,9 @@ const Editor = () => {
   return (
     <div className={`flex fill center ${styles.container}`}>
       <animated.div className={styles.card} ref={ref} style={style}>
-        {mappedView.map((i: any) => {
-          let content;
-          if (i.type === "legacy-item" && remoteListItems.getItem) {
-            const ItemComponent = remoteListItems.getItem(
-              i.legacy.itemType
-            ).component;
-
-            content = <ItemComponent {...i.legacy.itemProperties} />;
-          }
-
-          return <div key={i.id}>{content}</div>;
+        <div>List selected items</div>
+        {selectedItems.map((i: any) => {
+          return <div key={i.id}>Item {i.id}</div>;
         })}
       </animated.div>
     </div>

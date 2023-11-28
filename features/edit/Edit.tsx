@@ -1,7 +1,8 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import Property from "./Property";
-import Items from "./Items";
+import ListItems from "./ListItems";
+import HierarchyItems from "./HierarchyItems";
 import Editor from "./Editor";
 
 const Edit = () => {
@@ -12,7 +13,8 @@ const Edit = () => {
         justifyContent: "space-between",
       }}
     >
-      <Items />
+      <ListItems />
+      <HierarchyItems />
       <Editor />
       <Property />
     </div>

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { capitalizeText } from "mf-packages";
+
 import Link from "next/link";
 
 const IndexPage = () => {

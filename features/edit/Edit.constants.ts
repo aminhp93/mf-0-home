@@ -5,8 +5,8 @@ if (typeof window !== "undefined") {
   remoteListItems = require("property/symbols").default;
 }
 
-console.log({ remoteListItems });
 export const GEOMETRY = remoteListItems && remoteListItems.symbols.GEOMETRY;
+
 export const TEST_ITEM = {
   id: "Circle",
   deprecated: false,

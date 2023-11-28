@@ -1,4 +1,3 @@
-import styles from "@/components/Gesture.module.css";
 import dynamic from "next/dynamic";
 import { TEST, TEST_ITEM } from "./Edit.constants";
 
@@ -28,12 +27,12 @@ const Property = () => {
 
   return (
     <div>
-      Property
+      List Property
       <RemoteProperty
-      // {...TEST}
-      // onChange={handleChange}
-      // item={remoteListItems.getItem(TEST.id)}
-      // item={TEST_ITEM}
+        {...TEST}
+        onChange={handleChange}
+        // item={remoteListItems.getItem(TEST.id)}
+        item={TEST_ITEM}
       />
     </div>
   );

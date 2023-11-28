@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
-import { DEFAULT_VIEW } from "./View.constants";
-import { mapView } from "./View.utils";
+import { mapView } from "@/features/view/View.utils";
+import { DEFAULT_VIEW } from "@/features/view/View.constants";
 
 let remoteListItems: any;
 
@@ -8,11 +8,13 @@ if (typeof window !== "undefined") {
   remoteListItems = require("items/listItems").default;
 }
 
-const View = () => {
+const Items = () => {
+  console.log({ remoteListItems });
   const mappedView = mapView(DEFAULT_VIEW);
+
   return (
     <div>
-      view
+      List Items
       {mappedView.map((i: any) => {
         let content;
         if (i.type === "legacy-item" && remoteListItems.getItem) {
@@ -28,6 +30,4 @@ const View = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(View), {
-  ssr: false,
-});
+export default Items;

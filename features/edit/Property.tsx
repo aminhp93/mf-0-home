@@ -1,11 +1,26 @@
 import dynamic from "next/dynamic";
-import { TEST, TEST_ITEM } from "./Edit.constants";
+// @ts-ignore
+import remotePropertySymbols from "property/symbols";
+import useEditStore from "./store";
+import { useState } from "react";
 
-let remoteListItems: any;
+export const GEOMETRY = remotePropertySymbols?.symbols?.GEOMETRY;
 
-if (typeof window !== "undefined") {
-  remoteListItems = require("items/listItems").default;
-}
+const TEST_PROPERTY = {
+  properties: {
+    geometry: {
+      label: "Geometry",
+      type: GEOMETRY,
+      value: {
+        width: 40,
+        height: null,
+      },
+    },
+  },
+  id: "Circle",
+  name: "Circle",
+  label: "Circle",
+};
 
 const RemoteProperty = dynamic(
   () =>
@@ -19,19 +34,34 @@ const RemoteProperty = dynamic(
 ) as any;
 
 const Property = () => {
+  const [test, setTest] = useState(TEST_PROPERTY);
+
   const handleChange = (e: any) => {
-    console.log(e);
+    console.log("handleChange", e);
+    setTest({
+      ...test,
+      properties: {
+        ...test.properties,
+        geometry: {
+          ...test.properties.geometry,
+          value: {
+            ...test.properties.geometry.value,
+            ...e.geometry,
+          },
+        },
+      },
+    });
   };
+
+  const selectedItems = useEditStore((state) => state.selectedItems);
+  console.log({
+    selectedItems,
+  });
 
   return (
     <div>
-      List Property
-      <RemoteProperty
-        {...TEST}
-        onChange={handleChange}
-        // item={remoteListItems.getItem(TEST.id)}
-        item={TEST_ITEM}
-      />
+      <div>List Property</div>
+      <RemoteProperty {...test} onChange={handleChange} />
     </div>
   );
 };

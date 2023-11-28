@@ -47,7 +47,6 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("initAuth");
     const initAuth = async (): Promise<void> => {
       const storedToken = window.localStorage.getItem(
         authConfig.storageTokenKeyName

@@ -9,6 +9,7 @@ const useGesture = createUseGesture([dragAction, pinchAction]);
 
 const Editor = () => {
   const selectedItems = useEditStore((state) => state.selectedItems);
+  console.log({ selectedItems });
 
   useEffect(() => {
     const handler = (e: Event) => e.preventDefault();

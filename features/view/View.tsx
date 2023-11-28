@@ -2,11 +2,8 @@ import dynamic from "next/dynamic";
 import { DEFAULT_VIEW } from "./View.constants";
 import { mapView } from "./View.utils";
 
-let remoteListItems: any;
-
-if (typeof window !== "undefined") {
-  remoteListItems = require("items/listItems").default;
-}
+// @ts-ignore
+import listItems from "items/listItems";
 
 const View = () => {
   const mappedView = mapView(DEFAULT_VIEW);
@@ -15,10 +12,8 @@ const View = () => {
       view
       {mappedView.map((i: any) => {
         let content;
-        if (i.type === "legacy-item" && remoteListItems.getItem) {
-          const ItemComponent = remoteListItems.getItem(
-            i.legacy.itemType
-          ).component;
+        if (i.type === "legacy-item" && listItems.getItem) {
+          const ItemComponent = listItems.getItem(i.legacy.itemType).component;
           content = <ItemComponent {...i.legacy.itemProperties} />;
         }
 

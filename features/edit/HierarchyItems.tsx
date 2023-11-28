@@ -3,16 +3,12 @@ import { mapView } from "@/features/view/View.utils";
 import { DEFAULT_VIEW } from "@/features/view/View.constants";
 import useEditStore from "./store";
 
-let remoteListItems: any;
-
-if (typeof window !== "undefined") {
-  remoteListItems = require("items/listItems").default;
-}
+// @ts-ignore
+import listItems from "items/listItems";
 
 const HierarchyItems = () => {
   const mappedView = mapView(DEFAULT_VIEW);
-  const list = remoteListItems.getItems();
-  console.log("------------", list);
+  const list = listItems.getItems();
   const selectedItems = useEditStore((state) => state.selectedItems);
   const setSelectedItems = useEditStore((state) => state.setSelectedItems);
 
@@ -21,11 +17,8 @@ const HierarchyItems = () => {
       <div>HierarchyItems</div>
       {mappedView.map((i: any) => {
         let content;
-        if (i.type === "legacy-item" && remoteListItems.getItem) {
-          const ItemComponent = remoteListItems.getItem(
-            i.legacy.itemType
-          ).component;
-          console.log(i.legacy.itemProperties);
+        if (i.type === "legacy-item" && listItems.getItem) {
+          const ItemComponent = listItems.getItem(i.legacy.itemType).component;
 
           content = <ItemComponent {...i.legacy.itemProperties} />;
         }

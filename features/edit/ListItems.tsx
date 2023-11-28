@@ -17,7 +17,7 @@ const ListItems = () => {
           <div
             key={i.id}
             onClick={() => {
-              setSelectedItems([...selectedItems, i.id]);
+              setSelectedItems([...selectedItems, i]);
             }}
           >
             {i.id}

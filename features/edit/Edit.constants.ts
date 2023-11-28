@@ -1,11 +1,7 @@
-// import * as TYPE from "./symbols";
-let remoteListItems: any;
+// @ts-ignore
+import remotePropertySymbols from "property/symbols";
 
-if (typeof window !== "undefined") {
-  remoteListItems = require("property/symbols").default;
-}
-
-export const GEOMETRY = remoteListItems && remoteListItems.symbols.GEOMETRY;
+export const GEOMETRY = remotePropertySymbols?.symbols?.GEOMETRY;
 
 export const TEST_ITEM = {
   id: "Circle",
@@ -289,7 +285,6 @@ export const TEST_ITEM = {
       },
     },
   },
-  dir: ["drawing"],
 };
 export const TEST = {
   data: {},

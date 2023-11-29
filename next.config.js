@@ -1,15 +1,19 @@
 /** @type {import('next').NextConfig} */
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
-const { createSharedDependencies } = require("./utils/next-config-util.js");
+const {
+  createSharedDependencies,
+} = require("./@core/configs/next-config-util.js");
 
-let hostCommon = "http://localhost:3001";
-let hostItems = "http://localhost:3002";
-let hostProperty = "http://localhost:3003";
+let hostCommon = process.env.HOST_COMMON_LOCAL;
+let hostItems = process.env.HOST_ITEMS_LOCAL;
+let hostProperty = process.env.HOST_PROPERTY_LOCAL;
+
+console.log(process.env);
 
 if (process.env.NODE_ENV === "production") {
-  hostCommon = "https://common-omega.vercel.app";
-  hostItems = "https://items-lilac.vercel.app";
-  hostProperty = "https://property-tau.vercel.app";
+  hostCommon = process.env.HOST_COMMON_PRODUCTION;
+  hostItems = process.env.HOST_ITEMS_PRODUCTION;
+  hostProperty = process.env.HOST_PROPERTY_PRODUCTION;
 }
 
 const nextConfig = {

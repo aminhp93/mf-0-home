@@ -5,7 +5,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import { Direction } from "@mui/material";
 
 // ** ThemeConfig Import
-import themeConfig from "@/configs/themeConfig";
+import themeConfig from "@/@core/theme/themeConfig";
 
 // ** Types Import
 import {

@@ -16,7 +16,7 @@ import {
 import { Settings } from "@/@core/context/settingsContext";
 
 // ** Theme Config
-import themeConfig from "@/configs/themeConfig";
+import themeConfig from "@/@core/theme/themeConfig";
 
 // ** Theme Override Imports
 import overrides from "./overrides";
@@ -24,7 +24,7 @@ import typography from "./typography";
 
 // ** Theme
 import themeOptions from "./ThemeOptions";
-import UserThemeOptions from "@/layouts/UserThemeOptions";
+import UserThemeOptions from "@/@core/theme/UserThemeOptions";
 
 // ** Global Styles
 import GlobalStyling from "./globalStyles";

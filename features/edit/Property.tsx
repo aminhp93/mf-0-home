@@ -42,13 +42,7 @@ const Property = () => {
       ...test,
       properties: {
         ...test.properties,
-        geometry: {
-          ...test.properties.geometry,
-          value: {
-            ...test.properties.geometry.value,
-            ...e.geometry,
-          },
-        },
+        ...e,
       },
     });
   };

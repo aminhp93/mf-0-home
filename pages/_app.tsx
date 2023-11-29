@@ -32,22 +32,60 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   guestGuard?: boolean;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  // Fetch data from external API
-  // controller/system/subsystem
+import createCache from "@emotion/cache";
+
+export const createEmotionCache = () => {
+  return createCache({ key: "css" });
+};
+
+const clientSideEmotionCache = createEmotionCache();
+
+// ** Emotion Imports
+import type { EmotionCache } from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+
+// ** Component Imports
+import ThemeComponent from "@/@core/theme/ThemeComponent";
+
+// ** Contexts
+import {
+  SettingsConsumer,
+  SettingsProvider,
+} from "@/@core/context/settingsContext";
+
+// ** Configure JSS & ClassName
+const App = (props: any) => {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  // Variables
+
+  const setConfig = Component.setConfig ?? undefined;
+
   const authGuard = Component.authGuard ?? false;
 
   const guestGuard = Component.guestGuard ?? false;
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? ((page: any) => page);
 
   return (
-    <AuthProvider>
-      <Guard authGuard={authGuard} guestGuard={guestGuard}>
-        <Suspense fallback={<div>loadng 1</div>}>
-          {getLayout(<Component {...pageProps} />)}
-        </Suspense>
-      </Guard>
-    </AuthProvider>
+    <CacheProvider value={emotionCache}>
+      <AuthProvider>
+        <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+          <SettingsConsumer>
+            {({ settings }) => {
+              return (
+                <ThemeComponent settings={settings}>
+                  <Guard authGuard={authGuard} guestGuard={guestGuard}>
+                    {getLayout(<Component {...pageProps} />)}
+                  </Guard>
+                </ThemeComponent>
+              );
+            }}
+          </SettingsConsumer>
+        </SettingsProvider>
+      </AuthProvider>
+    </CacheProvider>
   );
-}
+};
+
+export default App;

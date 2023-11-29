@@ -6,6 +6,7 @@ type Props = {
 };
 
 const LegacyLayout = ({ children }: Props) => {
+  console.log("layout");
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const drawer = (

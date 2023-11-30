@@ -45,13 +45,19 @@ import type { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 
 // ** Component Imports
-import ThemeComponent from "@/@core/theme/ThemeComponent";
+// import ThemeComponent from "@/@core/theme/ThemeComponent";
 
-// ** Contexts
 import {
+  ThemeComponent,
   SettingsConsumer,
   SettingsProvider,
-} from "@/@core/context/settingsContext";
+} from "mf-packages";
+
+// ** Contexts
+// import {
+//   SettingsConsumer,
+//   SettingsProvider,
+// } from "@/@core/context/settingsContext";
 
 // ** Configure JSS & ClassName
 const App = (props: any) => {
@@ -72,7 +78,7 @@ const App = (props: any) => {
       <AuthProvider>
         <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
           <SettingsConsumer>
-            {({ settings }) => {
+            {({ settings }: any) => {
               return (
                 <ThemeComponent settings={settings}>
                   <Guard authGuard={authGuard} guestGuard={guestGuard}>

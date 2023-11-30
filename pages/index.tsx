@@ -1,12 +1,11 @@
 import dynamic from "next/dynamic";
-import { capitalizeText } from "mf-packages";
-import { useSettings } from "@/@core/hooks/useSettings";
+// import { useSettings } from "@/@core/hooks/useSettings";
+import { useSettings } from "mf-packages";
 import { Button } from "@mui/material";
 
 import Link from "next/link";
 
 const IndexPage = () => {
-  console.log(capitalizeText("hello world"));
   const { settings, saveSettings } = useSettings();
 
   return (

@@ -8,8 +8,6 @@ let hostCommon = process.env.HOST_COMMON_LOCAL;
 let hostItems = process.env.HOST_ITEMS_LOCAL;
 let hostProperty = process.env.HOST_PROPERTY_LOCAL;
 
-console.log(process.env);
-
 if (process.env.NODE_ENV === "production") {
   hostCommon = process.env.HOST_COMMON_PRODUCTION;
   hostItems = process.env.HOST_ITEMS_PRODUCTION;

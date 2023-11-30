@@ -1,6 +1,6 @@
 import axios from "axios";
 import { LoginParams, UserDataType } from "./types";
-import axiosInstance from "@/services";
+import axiosInstance from "@/@core/services";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 

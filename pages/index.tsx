@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 // import { useSettings } from "@/@core/hooks/useSettings";
 import { useSettings } from "mf-packages";
-import { Button } from "@mui/material";
+import { Button as MuiButton } from "@mui/material";
 
 import Link from "next/link";
 
@@ -20,8 +20,11 @@ const IndexPage = () => {
         <li>
           <Link href="/edit/123">edit id</Link>
         </li>
+        <li>
+          <Link href="/dashboard">dashboard</Link>
+        </li>
       </ul>
-      <Button
+      <MuiButton
         variant="outlined"
         onClick={() => {
           saveSettings({
@@ -31,7 +34,7 @@ const IndexPage = () => {
         }}
       >
         Mode {settings.mode}{" "}
-      </Button>
+      </MuiButton>
     </div>
   );
 };

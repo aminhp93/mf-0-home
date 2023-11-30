@@ -56,6 +56,11 @@ const Editor = () => {
         const x = memo[0] - (ms - 1) * memo[2];
         const y = memo[1] - (ms - 1) * memo[3];
         api.start({ scale: s, rotateZ: a, x, y });
+        console.log("done pinch");
+        // use window to reset current zoom
+
+        // set zoom to 100%
+
         return memo;
       },
     },
@@ -73,6 +78,10 @@ const Editor = () => {
         {selectedItems.map((i: any) => {
           return <div key={i.id}>Item {i.id}</div>;
         })}
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="100" fill="blue" />
+        </svg>
+        HierarchyItems
       </animated.div>
     </div>
   );

@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+import "react-grid-layout/css/styles.css";
+
 import type { AppProps } from "next/app";
 import { AuthProvider } from "@/features/auth/AuthContext";
 import AuthGuard from "@/features/auth/AuthGuard";

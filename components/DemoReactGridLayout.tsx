@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import _ from "lodash";
 import RGL, { WidthProvider, Layout } from "react-grid-layout";
+import Edit from "@/features/edit/Edit";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -22,7 +23,12 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
 
   const generateDOM = () => {
     return _.map(_.range(props.items || 0), (i) => (
-      <div key={i}>
+      <div
+        key={i}
+        style={{
+          backgroundColor: "lightgray",
+        }}
+      >
         <span className="text">{i}</span>
       </div>
     ));
@@ -57,7 +63,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
 
 BasicLayout.defaultProps = {
   className: "layout",
-  items: 20,
+  items: 4,
   rowHeight: 30,
   onLayoutChange: function () {},
   cols: 12,

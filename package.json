@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^7.0.8",
+    "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.18",
     "@react-spring/web": "^9.7.3",
     "@use-gesture/react": "^10.3.0",
@@ -28,6 +29,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-grid-layout": "^1.4.4",
+    "uuid": "^9.0.1",
     "webpack": "^5.89.0",
     "zustand": "^4.4.6"
   },

@@ -6,16 +6,18 @@ import qs from "qs";
 import authConfig from "@/features/auth/config";
 import AuthService from "@/features/auth/services";
 
-function subscribeTokenRefresh(cb: any) {
+type CbType = (token: string) => void;
+
+function subscribeTokenRefresh(cb: CbType) {
   refreshSubscribers.push(cb);
 }
 
 function onRrefreshed(token: string) {
-  refreshSubscribers.map((cb: any) => cb(token));
+  refreshSubscribers.map((cb: CbType) => cb(token));
 }
 
 let isRefreshing = false;
-const refreshSubscribers: any = [];
+const refreshSubscribers: CbType[] = [];
 
 const axiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
@@ -26,7 +28,7 @@ const axiosInstance = axios.create({
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
-  function (config: any) {
+  function (config) {
     // Do something before request is sent
     const accessToken = window.localStorage.getItem(
       authConfig.storageTokenKeyName
@@ -101,7 +103,7 @@ axiosInstance.interceptors.response.use(
       }
 
       const retryOrigReq = new Promise((resolve) => {
-        subscribeTokenRefresh((token: any) => {
+        subscribeTokenRefresh((token: string) => {
           // // replace the expired token and retry
           originalRequest.headers = {
             ...originalRequest.headers,

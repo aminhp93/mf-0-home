@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import _ from "lodash";
 import RGL, { WidthProvider, Layout } from "react-grid-layout";
-import Edit from "@/features/edit/Edit";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -36,7 +35,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
 
   const generateLayout = useCallback((): Layout[] => {
     return _.map(new Array(props.items || 0), (item, i) => {
-      const y: any = _.result(props, "y") || Math.ceil(Math.random() * 4) + 1;
+      const y: number =
+        _.result(props, "y") || Math.ceil(Math.random() * 4) + 1;
       return {
         x: (i * 2) % (props.cols || 12),
         y: Math.floor(i / 6) * y,

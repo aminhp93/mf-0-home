@@ -1,5 +1,5 @@
 // ** Axios
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import qs from "qs";
 
 // ** Config

@@ -35,7 +35,7 @@ const Editor = () => {
     {
       // onHover: ({ active, event }) => console.log('hover', event, active),
       // onMove: ({ event }) => console.log('move', event),
-      onDrag: ({ pinching, cancel, offset: [x, y], ...rest }) => {
+      onDrag: ({ pinching, cancel, offset: [x, y] }) => {
         if (pinching) return cancel();
         api.start({ x, y });
       },
@@ -75,7 +75,7 @@ const Editor = () => {
     <div className={`flex fill center ${styles.container}`}>
       <animated.div className={styles.card} ref={ref} style={style}>
         <div>List selected items</div>
-        {selectedItems.map((i: any) => {
+        {selectedItems.map((i) => {
           return <div key={i.id}>Item {i.id}</div>;
         })}
         <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">

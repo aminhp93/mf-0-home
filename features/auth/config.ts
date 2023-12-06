@@ -1,4 +1,4 @@
-export default {
+const config = {
   meEndpoint: "/auth/me",
   loginEndpoint: "/jwt/login",
   registerEndpoint: "/jwt/register",
@@ -7,3 +7,5 @@ export default {
   userDataKeyName: "userData",
   onTokenExpiration: "refreshToken", // logout | refreshToken
 };
+
+export default config;

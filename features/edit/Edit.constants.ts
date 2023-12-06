@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error Import remote module
 import remotePropertySymbols from "property/symbols";
 
 export const GEOMETRY = remotePropertySymbols?.symbols?.GEOMETRY;

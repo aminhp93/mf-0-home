@@ -15,10 +15,31 @@ interface BasicLayoutProps {
 const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const [layout, setLayout] = useState<Layout[]>([]);
 
+  const generateLayout = useCallback((): Layout[] => {
+    return _.map(new Array(props.items || 0), (item, i) => {
+      const y: number =
+        _.result(props, "y") || Math.ceil(Math.random() * 4) + 1;
+      return {
+        x: (i * 2) % (props.cols || 12),
+        y: Math.floor(i / 6) * y,
+        w: 2,
+        h: y,
+        i: i.toString(),
+      };
+    }) as Layout[];
+  }, [props]);
+
+  const onLayoutChange = useCallback(
+    (newLayout: Layout[]) => {
+      props.onLayoutChange && props.onLayoutChange(newLayout);
+    },
+    [props]
+  );
+
   useEffect(() => {
     const newLayout = generateLayout();
     setLayout(newLayout);
-  }, [props.items]);
+  }, [generateLayout, props.items]);
 
   const generateDOM = () => {
     return _.map(_.range(props.items || 0), (i) => (
@@ -32,27 +53,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
       </div>
     ));
   };
-
-  const generateLayout = useCallback((): Layout[] => {
-    return _.map(new Array(props.items || 0), (item, i) => {
-      const y: number =
-        _.result(props, "y") || Math.ceil(Math.random() * 4) + 1;
-      return {
-        x: (i * 2) % (props.cols || 12),
-        y: Math.floor(i / 6) * y,
-        w: 2,
-        h: y,
-        i: i.toString(),
-      };
-    }) as Layout[];
-  }, [props.items, props.cols]);
-
-  const onLayoutChange = useCallback(
-    (newLayout: Layout[]) => {
-      props.onLayoutChange && props.onLayoutChange(newLayout);
-    },
-    [props.onLayoutChange]
-  );
 
   return (
     <ReactGridLayout layout={layout} onLayoutChange={onLayoutChange} {...props}>

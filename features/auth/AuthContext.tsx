@@ -110,7 +110,7 @@ const AuthProvider = ({ children }: Props) => {
       const redirectURL = returnUrl && returnUrl !== "/" ? returnUrl : "/";
 
       router.replace(redirectURL as string);
-    } catch (err: any) {
+    } catch (err) {
       if (errorCallback) errorCallback(err);
     }
   };

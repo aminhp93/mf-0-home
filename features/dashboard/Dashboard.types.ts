@@ -1,6 +1,6 @@
 type DashboardContent = {
-  layouts: any;
-  widgets: any;
+  layouts: object;
+  widgets: object;
 };
 
 export interface Dashboard {

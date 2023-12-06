@@ -1,3 +1,3 @@
-export const mapView = (view: any) => {
+export const mapView = (view: object) => {
   return Object.values(view);
 };

@@ -12,7 +12,7 @@ const ListItems = () => {
     <div>
       <div>List Items</div>
 
-      {listItems.map((i: any) => {
+      {listItems.map((i: { id: string }) => {
         return (
           <div
             key={i.id}

@@ -6,7 +6,7 @@ const {
 
 const nextConfig = {
   reactStrictMode: true,
-  webpack(config, options) {
+  webpack(config) {
     // if (!options.isServer) {
     config.plugins.push(
       new NextFederationPlugin({
@@ -26,6 +26,9 @@ const nextConfig = {
     // }
 
     return config;
+  },
+  eslint: {
+    dirs: ["."], //or ['pages', 'hooks']
   },
 };
 

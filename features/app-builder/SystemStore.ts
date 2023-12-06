@@ -1,17 +1,23 @@
 import { create } from "zustand";
 import { produce } from "immer";
 
-type System = any;
-type Subsystem = any;
-type Controller = any;
+type System = {
+  id: string;
+};
+type Subsystem = {
+  id: string;
+};
+type Controller = {
+  id: string;
+};
 
 export type DataStore = {
-  systems: System;
-  subsystems: Subsystem;
-  controllers: Controller;
-  setSystems: (systems: System) => void;
-  setSubsystems: (subsystems: Subsystem) => void;
-  setControllers: (controllers: Controller) => void;
+  systems: System[];
+  subsystems: Subsystem[];
+  controllers: Controller[];
+  setSystems: (systems: System[]) => void;
+  setSubsystems: (subsystems: Subsystem[]) => void;
+  setControllers: (controllers: Controller[]) => void;
 };
 
 export const useDataStore = create<DataStore>((set) => ({

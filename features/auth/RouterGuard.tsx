@@ -5,7 +5,11 @@ import { useRouter } from "next/router";
 // Import local files
 import useAuth from "./useAuth";
 
-const RouterGuard = ({ children }: any) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const RouterGuard = ({ children }: Props) => {
   const { authUser } = useAuth();
   const router = useRouter();
 

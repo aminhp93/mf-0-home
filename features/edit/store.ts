@@ -2,9 +2,13 @@ import { create } from "zustand";
 import { produce } from "immer";
 import { uniqBy } from "lodash";
 
+type Item = {
+  id: string;
+};
+
 export type Store = {
-  selectedItems: any;
-  setSelectedItems: (data: any) => void;
+  selectedItems: Item[];
+  setSelectedItems: (data: Item[]) => void;
 };
 
 const useEditStore = create<Store>((set) => ({

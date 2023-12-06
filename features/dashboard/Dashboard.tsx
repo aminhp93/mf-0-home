@@ -9,10 +9,24 @@ import GridItem from "./GridItem";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+type Config = {
+  [key: string]: string;
+};
+
+type Item = {
+  i: number;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  component: React.ReactNode;
+  config?: Config;
+};
+
 const Dashboard = () => {
   const { editMode, setEditMode } = useDashboardStore();
-  const [layouts, setLayouts] = useState<ReactGridLayout.Layouts>();
-  const [items, setItems] = useState<any>([
+  // const [layouts, setLayouts] = useState<ReactGridLayout.Layouts>();
+  const [items, setItems] = useState<Item[]>([
     {
       i: 1,
       x: 4,
@@ -47,30 +61,30 @@ const Dashboard = () => {
     // },
   ]);
 
-  const handleLayoutChange = (
-    _: ReactGridLayout.Layout[],
-    allLayout: ReactGridLayout.Layouts
-  ) => {
-    const newAllLayout = {
-      ...allLayout,
-      lg: allLayout.lg?.map((item) => {
-        return {
-          ...item,
-        };
-      }),
-    };
-    setLayouts(newAllLayout);
-  };
+  // const handleLayoutChange = (
+  //   _: ReactGridLayout.Layout[],
+  //   allLayout: ReactGridLayout.Layouts
+  // ) => {
+  //   const newAllLayout = {
+  //     ...allLayout,
+  //     lg: allLayout.lg?.map((item) => {
+  //       return {
+  //         ...item,
+  //       };
+  //     }),
+  //   };
+  //   setLayouts(newAllLayout);
+  // };
 
   // We're using the cols coming back from this to calculate where to add new items.
-  const onBreakpointChange = (breakpoint: any, cols: any) => {};
+  // const onBreakpointChange = (breakpoint: any, cols: any) => {};
 
   const handleSaveConfig = () => {
     // handleDashboardChange(widgetConfig);
   };
 
-  const createElement = (el: any) => {
-    const C = React.cloneElement(el.component, {
+  const createElement = (el: Item) => {
+    const C = React.cloneElement(el.component as React.ReactElement, {
       id: el.i,
       onSaveConfig: handleSaveConfig,
       config: el.config,
@@ -87,7 +101,7 @@ const Dashboard = () => {
     );
   };
 
-  const onRemoveItem = (el: any) => {
+  const onRemoveItem = (el: Item) => {
     if (editMode) {
       setItems(_.reject(items, { i: el.i }));
     }

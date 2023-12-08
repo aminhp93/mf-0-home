@@ -7821,10 +7821,10 @@ methods@~1.1.2:
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
 
-mf-packages@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/mf-packages/-/mf-packages-0.0.4.tgz#9d819d3e823f6da1118106d111add878143848a8"
-  integrity sha512-id4WTXvbBUNLPWIU/sMEVHKWvmJSwCceyOJTFwj8d3lr18YuJFqo29EZx/L5ki7uTP40mnoYYw5HvqrUGoZFDA==
+mf-packages@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/mf-packages/-/mf-packages-0.0.7.tgz#cf9a7c13467c69799b5153f1d99c9e4f9a0a9295"
+  integrity sha512-So7qFo5xBSfloTDxAOx4Rr1+GdxLOC4UihBuetUO5O3/b7mJ4tedomzTOaTfWmqwg4sVjnO2J+jn8lw4fdIHKw==
   dependencies:
     "@emotion/react" "^11.11.1"
     "@emotion/styled" "^11.11.0"

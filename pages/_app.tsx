@@ -52,21 +52,24 @@ const App = (props: Props) => {
 
   return (
     <CacheProvider value={emotionCache}>
-      <AuthProvider>
-        <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-          <SettingsConsumer>
-            {({ settings }) => {
-              return (
-                <ThemeComponent settings={settings}>
-                  <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                    {getLayout(<Component {...pageProps} />)}
-                  </Guard>
-                </ThemeComponent>
-              );
-            }}
-          </SettingsConsumer>
-        </SettingsProvider>
-      </AuthProvider>
+      {/* <AuthProvider> */}
+      <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+        <SettingsConsumer>
+          {({ settings }) => {
+            console.log({
+              settings,
+            });
+            return (
+              <ThemeComponent settings={settings}>
+                {/* <Guard authGuard={authGuard} guestGuard={guestGuard}> */}
+                {getLayout(<Component {...pageProps} />)}
+                {/* </Guard> */}
+              </ThemeComponent>
+            );
+          }}
+        </SettingsConsumer>
+      </SettingsProvider>
+      {/* </AuthProvider> */}
     </CacheProvider>
   );
 };

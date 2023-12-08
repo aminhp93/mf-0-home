@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 // import { useSettings } from "@/@core/hooks/useSettings";
 import { useSettings, useTheme } from "mf-packages";
 import { Button as MuiButton } from "@mui/material";
+import axiosInstance from "@/@core/services";
 
 import Link from "next/link";
 
@@ -9,6 +10,17 @@ const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
   const theme = useTheme();
   console.log({ theme });
+  const handleLogin = async () => {
+    const res = await axiosInstance({
+      url: "http://10.250.0.142:8000/api/v1/auth/login",
+      method: "POST",
+      data: {
+        username: "admin",
+        password: "admin",
+      },
+    });
+    console.log(res);
+  };
 
   return (
     <div>
@@ -37,6 +49,8 @@ const IndexPage = () => {
       >
         Mode {settings.mode}{" "}
       </MuiButton>
+      <MuiButton onClick={() => handleLogin()}>test login</MuiButton>
+      <MuiButton variant="contained">test login</MuiButton>
     </div>
   );
 };

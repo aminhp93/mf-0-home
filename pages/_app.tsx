@@ -32,8 +32,13 @@ export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   setConfig?: () => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SettingsProps = any;
+
 type Props = AppProps & {
-  Component: NextPageWithLayout;
+  // Component: NextPageWithLayout;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Component: any;
   getLayout?: (page: ReactElement) => ReactNode;
   authGuard?: boolean;
   guestGuard?: boolean;
@@ -48,14 +53,15 @@ const App = (props: Props) => {
   const setConfig = Component.setConfig ?? undefined;
   const authGuard = Component.authGuard ?? false;
   const guestGuard = Component.guestGuard ?? false;
-  const getLayout = Component.getLayout ?? ((page) => page);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getLayout = Component.getLayout ?? ((page: any) => page);
 
   return (
     <CacheProvider value={emotionCache}>
       <AuthProvider>
         <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
           <SettingsConsumer>
-            {({ settings }) => {
+            {({ settings }: SettingsProps) => {
               return (
                 <ThemeComponent settings={settings}>
                   <Guard authGuard={authGuard} guestGuard={guestGuard}>

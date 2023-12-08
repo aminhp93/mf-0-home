@@ -1,12 +1,14 @@
 import dynamic from "next/dynamic";
 // import { useSettings } from "@/@core/hooks/useSettings";
-import { useSettings } from "mf-packages";
+import { useSettings, useTheme } from "mf-packages";
 import { Button as MuiButton } from "@mui/material";
 
 import Link from "next/link";
 
 const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
+  const theme = useTheme();
+  console.log({ theme });
 
   return (
     <div>

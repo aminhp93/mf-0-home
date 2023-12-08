@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 // import { useSettings } from "@/@core/hooks/useSettings";
-import { useSettings, useTheme } from "mf-packages";
+import { useSettings, useTheme, log } from "mf-packages";
 import { Button as MuiButton } from "@mui/material";
 import axiosInstance from "@/@core/services";
 
@@ -9,7 +9,12 @@ import Link from "next/link";
 const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
   const theme = useTheme();
-  console.log({ theme });
+  const logData = log();
+  console.log({
+    theme: theme.components?.MuiButton?.styleOverrides?.root,
+    logData,
+  });
+
   const handleLogin = async () => {
     const res = await axiosInstance({
       url: "http://10.250.0.142:8000/api/v1/auth/login",

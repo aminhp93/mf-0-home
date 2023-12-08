@@ -6,6 +6,8 @@ import remotePropertySymbols from "property/symbols";
 import useEditStore from "./store";
 // import { useState } from "react";
 
+console.log({ remotePropertySymbols });
+
 export const GEOMETRY = remotePropertySymbols?.symbols?.GEOMETRY;
 
 // const TEST_PROPERTY = {

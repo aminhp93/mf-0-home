@@ -3,18 +3,45 @@ import axios from "axios";
 import qs from "qs";
 
 // ** Config
-import authConfig from "@/features/auth/config";
-import AuthService from "@/features/auth/services";
+import { STORAGE_TOKEN_KEY_NAME } from "@/features/auth/Auth.constants";
+// import AuthService from "@/features/auth/Auth.services";
+
+const axiosDefault = axios.create({
+  headers: { "Content-Type": "application/json" },
+  paramsSerializer: {
+    serialize: (params) => qs.stringify(params, { arrayFormat: "repeat" }),
+  },
+  baseURL: getBaseUrlAndPort(),
+});
+
+export { axiosDefault };
 
 type CbType = (token: string) => void;
+
+function getBaseUrlAndPort() {
+  if (process.env.NEXT_PUBLIC_WEBPMP_V5_BASE_URL) {
+    return process.env.NEXT_PUBLIC_WEBPMP_V5_BASE_URL + "/api";
+  }
+
+  // const protocol = "http:"; // "http:" or "https:"
+  // let host = "";
+  // if (typeof window !== "undefined") {
+  //   host = window.location.hostname;
+  // }
+  // const port = 8888; // Port number of the current web page
+  // const baseUrl = `${protocol}//${host}:${port}/api/v1`;
+
+  // return baseUrl;
+  return "/";
+}
 
 function subscribeTokenRefresh(cb: CbType) {
   refreshSubscribers.push(cb);
 }
 
-function onRrefreshed(token: string) {
-  refreshSubscribers.map((cb: CbType) => cb(token));
-}
+// function onRrefreshed(token: string) {
+//   refreshSubscribers.map((cb: CbType) => cb(token));
+// }
 
 let isRefreshing = false;
 const refreshSubscribers: CbType[] = [];
@@ -24,15 +51,14 @@ const axiosInstance = axios.create({
   paramsSerializer: {
     serialize: (params) => qs.stringify(params, { arrayFormat: "repeat" }),
   },
+  baseURL: getBaseUrlAndPort(),
 });
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const accessToken = window.localStorage.getItem(
-      authConfig.storageTokenKeyName
-    );
+    const accessToken = window.localStorage.getItem(STORAGE_TOKEN_KEY_NAME);
     if (accessToken) {
       config.headers!["Authorization"] = "Bearer " + accessToken;
     }
@@ -66,41 +92,39 @@ axiosInstance.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
 
-        const refreshToken = window.localStorage.getItem(
-          authConfig.refreshTokenKeyName
-        );
-        if (refreshToken) {
-          AuthService.getRefreshToken({ refreshToken })
-            .then((res) => {
-              window.localStorage.setItem(
-                authConfig.storageTokenKeyName,
-                res.data.accessToken
-              );
-              window.localStorage.setItem(
-                authConfig.refreshTokenKeyName,
-                res.data.refreshToken
-              );
-
-              isRefreshing = false;
-              onRrefreshed(res.data.accessToken);
-            })
-            .catch((err) => {
-              if (
-                err.response &&
-                err.response.status === 401 &&
-                err.response.data.detail === "Token has expired"
-              ) {
-                window.localStorage.removeItem(authConfig.storageTokenKeyName);
-                window.localStorage.removeItem(authConfig.refreshTokenKeyName);
-                window.localStorage.removeItem("userData");
-
-                // redirect to login page
-                window.location.href = "/login";
-              }
-              console.log(err);
-            });
-        }
+        // const refreshToken = window.localStorage.getItem(
+        //   authConfig.refreshTokenKeyName
+        // );
+        // if (refreshToken) {
+        // AuthService.getRefreshToken({ refreshToken })
+        //   .then((res) => {
+        //     window.localStorage.setItem(
+        //       authConfig.storageTokenKeyName,
+        //       res.data.accessToken
+        //     );
+        //     window.localStorage.setItem(
+        //       authConfig.refreshTokenKeyName,
+        //       res.data.refreshToken
+        //     );
+        //     isRefreshing = false;
+        //     onRrefreshed(res.data.accessToken);
+        //   })
+        //   .catch((err) => {
+        //     if (
+        //       err.response &&
+        //       err.response.status === 401 &&
+        //       err.response.data.detail === "Token has expired"
+        //     ) {
+        //       window.localStorage.removeItem(authConfig.storageTokenKeyName);
+        //       window.localStorage.removeItem(authConfig.refreshTokenKeyName);
+        //       window.localStorage.removeItem("userData");
+        //       // redirect to login page
+        //       window.location.href = "/login";
+        //     }
+        //     console.log(err);
+        //   });
       }
+      // }
 
       const retryOrigReq = new Promise((resolve) => {
         subscribeTokenRefresh((token: string) => {

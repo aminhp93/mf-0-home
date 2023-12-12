@@ -1,0 +1,135 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Coding Convention" />
+
+---
+
+```tsx
+// Use type instead of interface. If needed, use interface.
+
+✅ Ok
+type User = {
+  name: string;
+  age: number;
+};
+
+❌ Not Ok
+interface User {
+  name: string;
+  age: number;
+}
+
+```
+
+---
+
+```tsx
+// Use simple Props and es6 const
+
+✅ Ok
+type Props = {
+  title?: string;
+};
+
+const Home = (props: Props) => {
+  return <div>Home</div>;
+};
+
+export default Home;
+
+```
+
+---
+
+When to use zod
+
+```tsx
+// Input Validation
+
+import { object, string, number } from "zod";
+
+const userSchema = object({
+  name: string(),
+  age: number(),
+});
+
+const userInput = { name: "John", age: "25" };
+const parsedUser = userSchema.parse(userInput);
+```
+
+```tsx
+// API Response Validation
+
+import { object, string, number } from 'zod';
+
+const apiResponseSchema = object({
+  data: object({
+    userId: number(),
+    username: string(),
+  }),
+  success: boolean(),
+});
+
+const apiResponse = /* API response from a server */;
+const parsedApiResponse = apiResponseSchema.parse(apiResponse);
+
+```
+
+```tsx
+// Configuration Parsing
+
+import { object, string, number } from 'zod';
+
+const configSchema = object({
+  port: number(),
+  database: object({
+    host: string(),
+    username: string(),
+    password: string(),
+  }),
+});
+
+const configData = /* Configuration data from a file */;
+const parsedConfig = configSchema.parse(configData);
+```
+
+```tsx
+// Data Transformation
+
+import { object, string, number } from 'zod';
+
+const inputData = /* Some raw data */;
+const parsedData = object({
+  name: string(),
+  age: number(),
+}).parse(inputData);
+
+```
+
+```tsx
+// Data Serialization
+
+import { object, string, number } from "zod";
+
+const userSchema = object({
+  name: string(),
+  age: number(),
+});
+
+// TypeScript knows the types of properties
+const userName: string = userSchema.parse({ name: "John", age: 25 }).name;
+```
+
+---
+
+```tsx
+// Import from MUI
+
+✅ Ok
+import { Button, Checkbox, Tab } from "@mui/material";
+
+❌ Not Ok
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import Tab from "@mui/material/Tab";
+```

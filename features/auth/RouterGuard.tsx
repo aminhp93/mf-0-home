@@ -10,12 +10,11 @@ type Props = {
 };
 
 const RouterGuard = ({ children }: Props) => {
-  const { authUser } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
-  console.log({ authUser });
-  if (!authUser) {
-    router.push("/signIn");
+  if (!user) {
+    router.push("/login");
   }
 
   return <>{children}</>;

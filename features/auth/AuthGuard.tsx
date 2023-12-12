@@ -1,50 +1,37 @@
-// ** React Imports
+// Import library
 import { ReactNode, ReactElement, useEffect } from "react";
-
-// ** Next Imports
 import { useRouter } from "next/router";
 
-// ** Hooks Import
+// Import local files
 import useAuth from "./useAuth";
+import { USER_DATA_KEY_NAME } from "./Auth.constants";
 
-// ** Config
-import authConfig from "./config";
-
-interface AuthGuardProps {
+type Props = {
   children: ReactNode;
   fallback: ReactElement | null;
-}
+};
 
-const AuthGuard = (props: AuthGuardProps) => {
+const AuthGuard = (props: Props) => {
   const { children, fallback } = props;
-  const auth = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
-  useEffect(
-    () => {
-      if (!router.isReady) {
-        return;
-      }
+  useEffect(() => {
+    if (!router.isReady) return;
 
-      if (
-        auth.user === null &&
-        !window.localStorage.getItem(authConfig.userDataKeyName)
-      ) {
-        if (router.asPath !== "/") {
-          router.replace({
-            pathname: "/login",
-            query: { returnUrl: router.asPath },
-          });
-        } else {
-          router.replace("/login");
-        }
+    if (user === null && !window.localStorage.getItem(USER_DATA_KEY_NAME)) {
+      if (router.asPath !== "/") {
+        router.replace({
+          pathname: "/login",
+          query: { returnUrl: router.asPath },
+        });
+      } else {
+        router.replace("/login");
       }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [router.route]
-  );
+    }
+  }, [router, user]);
 
-  if (auth.loading || auth.user === null) {
+  if (loading || user === null) {
     return fallback;
   }
 

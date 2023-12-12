@@ -11,6 +11,7 @@
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
     "component": "cypress open --component",
     "component:headless": "cypress run --component",
+    "cy": "cypress run .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -18,9 +19,7 @@
     "@module-federation/nextjs-mf": "^7.0.8",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.18",
-    "@react-spring/web": "^9.7.3",
     "@types/uuid": "^9.0.7",
-    "@use-gesture/react": "^10.3.0",
     "axios": "^1.6.2",
     "immer": "^10.0.3",
     "lodash": "^4.17.21",
@@ -30,8 +29,11 @@
     "react": "^18",
     "react-dom": "^18",
     "react-grid-layout": "^1.4.4",
+    "react-rnd": "^10.4.1",
+    "swr": "^2.2.4",
     "uuid": "^9.0.1",
     "webpack": "^5.89.0",
+    "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },
   "devDependencies": {

@@ -1,35 +1,28 @@
-// ** React Imports
+// Import library
 import { ReactNode, ReactElement, useEffect } from "react";
-
-// ** Next Imports
 import { useRouter } from "next/router";
 
-// ** Hooks Import
+// Import local files
 import useAuth from "./useAuth";
+import { USER_DATA_KEY_NAME } from "./Auth.constants";
 
-// ** Config
-import authConfig from "./config";
-
-interface GuestGuardProps {
+type Props = {
   children: ReactNode;
   fallback: ReactElement | null;
-}
+};
 
-const GuestGuard = (props: GuestGuardProps) => {
+const GuestGuard = (props: Props) => {
   const { children, fallback } = props;
   const auth = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!router.isReady) {
-      return;
-    }
+    if (!router.isReady) return;
 
-    if (window.localStorage.getItem(authConfig.userDataKeyName)) {
+    if (window.localStorage.getItem(USER_DATA_KEY_NAME)) {
       router.replace("/");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.route]);
+  }, [router]);
 
   if (auth.loading || (!auth.loading && auth.user !== null)) {
     return fallback;

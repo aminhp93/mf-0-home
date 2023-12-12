@@ -1,10 +1,21 @@
+// Import libraries
 import dynamic from "next/dynamic";
-// import { useSettings } from "@/@core/hooks/useSettings";
 import { useSettings, useTheme, log } from "mf-packages";
-import { Button as MuiButton } from "@mui/material";
-import axiosInstance from "@/@core/services";
-
+import { Button, Box } from "@mui/material";
 import Link from "next/link";
+
+// Import local files
+import axiosInstance from "@/@core/services";
+import Dialog from "@/@core/components/dialog/Dialog";
+import DialogWrapper from "@/@core/components/dialog/DialogWrapper";
+
+const style = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "solid 1px #ddd",
+  background: "#f0f0f0",
+} as const;
 
 const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
@@ -28,7 +39,8 @@ const IndexPage = () => {
   };
 
   return (
-    <div>
+    <Box>
+      <h1>Index page</h1>
       <ul>
         <li>
           <Link href="/">home</Link>
@@ -43,7 +55,7 @@ const IndexPage = () => {
           <Link href="/dashboard">dashboard</Link>
         </li>
       </ul>
-      <MuiButton
+      <Button
         variant="outlined"
         onClick={() => {
           saveSettings({
@@ -52,11 +64,25 @@ const IndexPage = () => {
           });
         }}
       >
-        Mode {settings.mode}{" "}
-      </MuiButton>
-      <MuiButton onClick={() => handleLogin()}>test login</MuiButton>
-      <MuiButton variant="contained">test login</MuiButton>
-    </div>
+        Mode {settings.mode}
+      </Button>
+      <Button variant="contained" onClick={() => handleLogin()}>
+        test login
+      </Button>
+      <DialogWrapper>
+        <Dialog
+          style={style}
+          default={{
+            x: 0,
+            y: 0,
+            width: 200,
+            height: 200,
+          }}
+        >
+          ReactRnd
+        </Dialog>
+      </DialogWrapper>
+    </Box>
   );
 };
 

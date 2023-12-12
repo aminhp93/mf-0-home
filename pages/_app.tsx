@@ -51,7 +51,7 @@ const App = (props: Props) => {
 
   // Variables
   const setConfig = Component.setConfig ?? undefined;
-  const authGuard = Component.authGuard ?? false;
+  const authGuard = Component.authGuard ?? true;
   const guestGuard = Component.guestGuard ?? false;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getLayout = Component.getLayout ?? ((page: any) => page);

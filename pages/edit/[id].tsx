@@ -1,6 +1,12 @@
 import dynamic from "next/dynamic";
-import LegacyLayout from "@/features/layout/LegacyLayout";
-import Edit from "@/features/edit/Edit";
+
+const LegacyLayout = dynamic(() => import("@/features/layout/LegacyLayout"), {
+  ssr: false,
+});
+
+const Edit = dynamic(() => import("@/features/edit/Edit"), {
+  ssr: false,
+});
 
 const EditPage = () => {
   return <Edit />;
@@ -10,6 +16,4 @@ EditPage.getLayout = (page: React.ReactNode) => (
   <LegacyLayout>{page}</LegacyLayout>
 );
 
-export default dynamic(() => Promise.resolve(EditPage), {
-  ssr: false,
-});
+export default EditPage;

@@ -1,5 +1,8 @@
 import dynamic from "next/dynamic";
-import Dashboard from "@/features/dashboard/Dashboard";
+
+const Dashboard = dynamic(() => import("@/features/dashboard/Dashboard"), {
+  ssr: false,
+});
 
 const DashboardPage = () => {
   return (
@@ -9,6 +12,4 @@ const DashboardPage = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(DashboardPage), {
-  ssr: false,
-});
+export default DashboardPage;

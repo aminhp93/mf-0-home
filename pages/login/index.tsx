@@ -1,10 +1,13 @@
 import dynamic from "next/dynamic";
-import Login from "@/features/auth/Login";
+
+const Login = dynamic(() => import("@/features/auth/Login"), {
+  ssr: false,
+});
 
 const LoginPage = () => {
   return <Login />;
 };
 
-export default dynamic(() => Promise.resolve(LoginPage), {
-  ssr: false,
-});
+LoginPage.guestGuard = true;
+
+export default LoginPage;

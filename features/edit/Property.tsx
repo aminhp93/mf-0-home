@@ -3,10 +3,8 @@
 import dynamic from "next/dynamic";
 // @ts-expect-error Import remote module
 import remotePropertySymbols from "property/symbols";
-import useEditStore from "./store";
+// import useEditStore from "./store";
 // import { useState } from "react";
-
-console.log({ remotePropertySymbols });
 
 export const GEOMETRY = remotePropertySymbols?.symbols?.GEOMETRY;
 
@@ -41,7 +39,6 @@ const Property = () => {
   // const [test, setTest] = useState(TEST_PROPERTY);
 
   // const handleChange = (e: any) => {
-  //   console.log("handleChange", e);
   //   setTest({
   //     ...test,
   //     properties: {
@@ -51,10 +48,7 @@ const Property = () => {
   //   });
   // } ;
 
-  const selectedItems = useEditStore((state) => state.selectedItems);
-  console.log({
-    selectedItems,
-  });
+  // const selectedItems = useEditStore((state) => state.selectedItems);
 
   return (
     <div>

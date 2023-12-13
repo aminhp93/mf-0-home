@@ -1,6 +1,12 @@
 import dynamic from "next/dynamic";
-import LegacyLayout from "@/features/layout/LegacyLayout";
-import View from "@/features/view/View";
+
+const LegacyLayout = dynamic(() => import("@/features/layout/LegacyLayout"), {
+  ssr: false,
+});
+
+const View = dynamic(() => import("@/features/view/View"), {
+  ssr: false,
+});
 
 const ViewPage = () => {
   return <View />;
@@ -10,6 +16,4 @@ ViewPage.getLayout = (page: React.ReactNode) => (
   <LegacyLayout>{page}</LegacyLayout>
 );
 
-export default dynamic(() => Promise.resolve(ViewPage), {
-  ssr: false,
-});
+export default ViewPage;

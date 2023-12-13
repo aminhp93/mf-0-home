@@ -1,5 +1,4 @@
 // Import libraries
-import dynamic from "next/dynamic";
 import { useSettings, useTheme } from "mf-packages";
 import { Button, Box } from "@mui/material";
 import Link from "next/link";
@@ -87,6 +86,4 @@ const IndexPage = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(IndexPage), {
-  ssr: false,
-});
+export default IndexPage;

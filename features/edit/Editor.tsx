@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
-import styles from "@/components/Gesture.module.css";
 import useEditStore from "./store";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
@@ -72,8 +71,8 @@ const Editor = () => {
   );
 
   return (
-    <div className={`flex fill center ${styles.container}`}>
-      <animated.div className={styles.card} ref={ref} style={style}>
+    <div className={`flex fill center`}>
+      <animated.div ref={ref} style={style}>
         <div>List selected items</div>
         {selectedItems.map((i) => {
           return <div key={i.id}>Item {i.id}</div>;

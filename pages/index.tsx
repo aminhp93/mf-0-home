@@ -1,8 +1,10 @@
 // Import libraries
 import dynamic from "next/dynamic";
-import { useSettings, useTheme, log } from "mf-packages";
+import { useSettings, useTheme } from "mf-packages";
 import { Button, Box } from "@mui/material";
 import Link from "next/link";
+// import { isArray } from "webpmp-utils";
+// import { useSettings, useTheme } from "webpmp-theme";
 
 // Import local files
 import axiosInstance from "@/@core/services";
@@ -20,10 +22,9 @@ const style = {
 const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
   const theme = useTheme();
-  const logData = log();
+  // const testIsArray = isArray("hello");
   console.log({
     theme: theme.components?.MuiButton?.styleOverrides?.root,
-    logData,
   });
 
   const handleLogin = async () => {

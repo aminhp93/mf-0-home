@@ -35,6 +35,8 @@
     "swr": "^2.2.4",
     "uuid": "^9.0.1",
     "webpack": "^5.89.0",
+    "webpmp-theme": "^1.0.3",
+    "webpmp-utils": "^1.1.0",
     "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },

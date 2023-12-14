@@ -7,10 +7,6 @@ import { STORAGE_TOKEN_KEY_NAME } from "@/features/auth/Auth.constants";
 // import AuthService from "@/features/auth/Auth.services";
 
 const axiosDefault = axios.create({
-  headers: { "Content-Type": "application/json" },
-  paramsSerializer: {
-    serialize: (params) => qs.stringify(params, { arrayFormat: "repeat" }),
-  },
   baseURL: getBaseUrlAndPort(),
 });
 
@@ -18,9 +14,9 @@ export { axiosDefault };
 
 type CbType = (token: string) => void;
 
-function getBaseUrlAndPort() {
+export function getBaseUrlAndPort() {
   if (process.env.NEXT_PUBLIC_WEBPMP_V5_BASE_URL) {
-    return process.env.NEXT_PUBLIC_WEBPMP_V5_BASE_URL + "/api";
+    return process.env.NEXT_PUBLIC_WEBPMP_V5_BASE_URL + "/api/v1/";
   }
 
   // const protocol = "http:"; // "http:" or "https:"
@@ -60,7 +56,7 @@ axiosInstance.interceptors.request.use(
     // Do something before request is sent
     const accessToken = window.localStorage.getItem(STORAGE_TOKEN_KEY_NAME);
     if (accessToken) {
-      config.headers!["Authorization"] = "Bearer " + accessToken;
+      config.headers["Authorization"] = "Bearer " + accessToken;
     }
 
     return config;

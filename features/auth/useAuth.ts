@@ -8,57 +8,41 @@ import {
   USER_DATA_KEY_NAME,
   DEFAULT_PROVIDER,
 } from "./Auth.constants";
-import { LoginRequestData, User, ErrCallbackType } from "./Auth.types";
+import { LoginRequestData, ErrCallbackType } from "./Auth.types";
 import AuthService from "./Auth.services";
+import UsersService from "../users/Users.services";
+import { User } from "@/features/users/Users.types";
 
 const useAuth = () => {
-  // ** States
   const [user, setUser] = useState<User | null>(DEFAULT_PROVIDER.user);
   const [loading, setLoading] = useState<boolean>(DEFAULT_PROVIDER.loading);
-
-  // ** Hooks
   const router = useRouter();
 
   useEffect(() => {
-    const initAuth = async (): Promise<void> => {
+    (async () => {
       const storedToken = window.localStorage.getItem(STORAGE_TOKEN_KEY_NAME)!;
       if (storedToken) {
         setLoading(true);
         try {
-          // const res = await AuthService.me();
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const res: any = {
-            user: {
-              id: 1,
-              username: "John Doe",
-            },
-          };
+          const res = await UsersService.me();
           setLoading(false);
-          setUser({ ...res.user });
-          window.localStorage.setItem(
-            USER_DATA_KEY_NAME,
-            JSON.stringify(res.user)
-          );
+          setUser(res);
+          window.localStorage.setItem(USER_DATA_KEY_NAME, JSON.stringify(res));
           console.log("Logged in successfully");
         } catch (e) {
           setLoading(false);
-          // localStorage.removeItem('userData')
-          // localStorage.removeItem('refreshToken')
-          // localStorage.removeItem('accessToken')
           setUser(null);
+          window.localStorage.removeItem(USER_DATA_KEY_NAME);
+          window.localStorage.removeItem(STORAGE_TOKEN_KEY_NAME);
           console.log("Login failed");
         }
       } else {
         // redirect to login page
         router.push("/login");
-
         setLoading(false);
       }
-    };
-
-    initAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    })();
+  }, [router]);
 
   const handleLogin = async (
     params: LoginRequestData,
@@ -66,24 +50,15 @@ const useAuth = () => {
   ) => {
     try {
       const res = await AuthService.login(params);
-      window.localStorage.setItem(STORAGE_TOKEN_KEY_NAME, res.data.status);
-
-      // const meRes = await AuthService.me();
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const meRes: any = {
-        user: {
-          id: 1,
-          username: "John Doe",
-        },
-      };
-
-      setUser({ ...meRes.user });
-
       window.localStorage.setItem(
-        USER_DATA_KEY_NAME,
-        JSON.stringify(meRes.user)
+        STORAGE_TOKEN_KEY_NAME,
+        res.data.access_token
       );
+
+      const meRes = await UsersService.me();
+      setUser(meRes);
+
+      window.localStorage.setItem(USER_DATA_KEY_NAME, JSON.stringify(meRes));
 
       const returnUrl = router.query.returnUrl;
       const redirectURL = returnUrl && returnUrl !== "/" ? returnUrl : "/";

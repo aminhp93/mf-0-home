@@ -2,13 +2,17 @@
 import { useSettings, useTheme } from "mf-packages";
 import { Button, Box } from "@mui/material";
 import Link from "next/link";
-// import { isArray } from "webpmp-utils";
-// import { useSettings, useTheme } from "webpmp-theme";
-
-// Import local files
-import axiosInstance from "@/@core/services";
 import Dialog from "@/@core/components/dialog/Dialog";
 import DialogWrapper from "@/@core/components/dialog/DialogWrapper";
+import dynamic from "next/dynamic";
+
+const Logout = dynamic(() => import("@/features/auth/Logout"), {
+  ssr: false,
+});
+
+const UserDetail = dynamic(() => import("@/features/users/UserDetail"), {
+  ssr: false,
+});
 
 const style = {
   display: "flex",
@@ -21,22 +25,9 @@ const style = {
 const IndexPage = () => {
   const { settings, saveSettings } = useSettings();
   const theme = useTheme();
-  // const testIsArray = isArray("hello");
   console.log({
     theme: theme.components?.MuiButton?.styleOverrides?.root,
   });
-
-  const handleLogin = async () => {
-    const res = await axiosInstance({
-      url: "http://10.250.0.142:8000/api/v1/auth/login",
-      method: "POST",
-      data: {
-        username: "admin",
-        password: "admin",
-      },
-    });
-    console.log(res);
-  };
 
   return (
     <Box>
@@ -56,7 +47,7 @@ const IndexPage = () => {
         </li>
       </ul>
       <Button
-        variant="outlined"
+        variant="contained"
         onClick={() => {
           saveSettings({
             ...settings,
@@ -66,15 +57,14 @@ const IndexPage = () => {
       >
         Mode {settings.mode}
       </Button>
-      <Button variant="contained" onClick={() => handleLogin()}>
-        test login
-      </Button>
+      <Logout />
+      <UserDetail />
       <DialogWrapper>
         <Dialog
           style={style}
           default={{
-            x: 0,
-            y: 0,
+            x: 300,
+            y: 300,
             width: 200,
             height: 200,
           }}

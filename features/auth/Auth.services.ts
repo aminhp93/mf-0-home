@@ -4,13 +4,12 @@ import {
   LoginRequestData,
   LoginResponseData,
   LogoutResponseData,
-  User,
 } from "./Auth.types";
+import qs from "qs";
 
 const AuthUrl = {
   login: `/auth/login`,
   logout: `/auth/logout`,
-  me: `/user`,
 };
 
 export { AuthUrl };
@@ -25,23 +24,18 @@ const AuthService = {
     return axiosDefault({
       method: "POST",
       url: AuthUrl.login,
-      data,
+      data: qs.stringify(data),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
     });
   },
   logout: (): Promise<{
     data: LogoutResponseData;
   }> => {
-    return axiosDefault({
+    return axiosInstance({
       method: "POST",
       url: AuthUrl.logout,
-    });
-  },
-  me: (): Promise<{
-    user: User;
-  }> => {
-    return axiosInstance({
-      method: "GET",
-      url: AuthUrl.me,
     });
   },
 };

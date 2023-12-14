@@ -9,8 +9,8 @@ const Login = () => {
 
   const handleLogin = () => {
     const dataRequest = {
-      username: btoa(encodeURIComponent("admin")),
-      password: btoa(encodeURIComponent("p20-admin")),
+      username: "admin",
+      password: "admin",
     };
 
     login(dataRequest);

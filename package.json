@@ -1,5 +1,5 @@
 {
-  "name": "home",
+  "name": "webpmp-v5",
   "version": "0.1.0",
   "private": false,
   "scripts": {
@@ -11,7 +11,6 @@
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
     "component": "cypress open --component",
     "component:headless": "cypress run --component",
-    "cy": "cypress run .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

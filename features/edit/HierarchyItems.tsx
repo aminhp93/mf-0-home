@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+// Import local components
 import { mapView } from "@/features/view/View.utils";
 import { DEFAULT_VIEW } from "@/features/view/View.constants";
 import useEditStore from "./store";
@@ -38,6 +38,4 @@ const HierarchyItems = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(HierarchyItems), {
-  ssr: false,
-});
+export default HierarchyItems;

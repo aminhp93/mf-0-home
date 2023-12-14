@@ -3,6 +3,7 @@ import "react-grid-layout/css/styles.css";
 
 // Import packages
 import type { AppProps } from "next/app";
+import dynamic from "next/dynamic";
 import { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import createCache from "@emotion/cache";
@@ -16,8 +17,14 @@ import {
 
 // Import local components
 import { AuthProvider } from "@/features/auth/AuthContext";
-import AuthGuard from "@/features/auth/AuthGuard";
-import GuestGuard from "@/features/auth/GuestGuard";
+
+const AuthGuard = dynamic(() => import("@/features/auth/AuthGuard"), {
+  ssr: false,
+});
+
+const GuestGuard = dynamic(() => import("@/features/auth/GuestGuard"), {
+  ssr: false,
+});
 
 export const createEmotionCache = () => {
   return createCache({ key: "css" });

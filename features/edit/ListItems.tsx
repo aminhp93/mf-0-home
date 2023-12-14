@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+// Import local components
 import useEditStore from "./store";
 import { getListItems } from "./Edit.utils";
 
@@ -28,6 +28,4 @@ const ListItems = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(ListItems), {
-  ssr: false,
-});
+export default ListItems;

@@ -1,6 +1,5 @@
 /* eslint no-use-before-define: 0 */
 
-import dynamic from "next/dynamic";
 // @ts-expect-error Import remote module
 import remotePropertySymbols from "property/symbols";
 // import useEditStore from "./store";
@@ -59,6 +58,4 @@ const Property = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Property), {
-  ssr: false,
-});
+export default Property;

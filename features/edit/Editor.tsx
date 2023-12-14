@@ -1,7 +1,9 @@
-import dynamic from "next/dynamic";
+// Import external libraries
 import React, { useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
+
+// Import local components
 import useEditStore from "./store";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
@@ -85,6 +87,4 @@ const Editor = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Editor), {
-  ssr: false,
-});
+export default Editor;

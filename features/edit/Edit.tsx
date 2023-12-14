@@ -1,5 +1,4 @@
-import dynamic from "next/dynamic";
-import React from "react";
+// Import local components
 import Property from "./Property";
 import ListItems from "./ListItems";
 import HierarchyItems from "./HierarchyItems";
@@ -21,6 +20,4 @@ const Edit = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Edit), {
-  ssr: false,
-});
+export default Edit;

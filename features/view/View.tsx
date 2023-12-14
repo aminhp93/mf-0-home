@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { DEFAULT_VIEW } from "./View.constants";
 import { mapView } from "./View.utils";
 
@@ -23,6 +22,4 @@ const View = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(View), {
-  ssr: false,
-});
+export default View;

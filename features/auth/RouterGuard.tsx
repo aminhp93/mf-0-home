@@ -1,5 +1,4 @@
 // Import library
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 // Import local files
@@ -20,6 +19,4 @@ const RouterGuard = ({ children }: Props) => {
   return <>{children}</>;
 };
 
-export default dynamic(() => Promise.resolve(RouterGuard), {
-  ssr: false,
-});
+export default RouterGuard;

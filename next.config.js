@@ -13,9 +13,10 @@ const nextConfig = {
         name: "home",
         filename: "static/chunks/remoteEntry.js",
         remotes: {
-          common: `common@${process.env.WEBPMP_V5_COMMON_URL}/_next/static/chunks/remoteEntry.js`,
-          items: `items@${process.env.WEBPMP_V5_ITEMS_BASIC_URL}/_next/static/chunks/remoteEntry.js`,
-          property: `property@${process.env.WEBPMP_V5_PROPERTIES_URL}/_next/static/chunks/remoteEntry.js`,
+          common: `common@${process.env.NEXT_PUBLIC_WEBPMP_V5_COMMON_URL}/_next/static/chunks/remoteEntry.js`,
+          itemsBasic: `itemsBasic@${process.env.NEXT_PUBLIC_WEBPMP_V5_ITEMS_BASIC_URL}/_next/static/chunks/remoteEntry.js`,
+          itemsBas: `itemsBas@${process.env.NEXT_PUBLIC_WEBPMP_V5_ITEMS_BAS_URL}/_next/static/chunks/remoteEntry.js`,
+          property: `property@${process.env.NEXT_PUBLIC_WEBPMP_V5_PROPERTIES_URL}/_next/static/chunks/remoteEntry.js`,
           widgets: `widgets@${
             process.env.WEBPMP_V5_WIDGETS_BASIC_URL
           }/_next/static/${isServer ? "ssr" : "chunks"}/remoteEntry.js`,

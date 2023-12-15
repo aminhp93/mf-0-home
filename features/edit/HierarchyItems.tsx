@@ -4,7 +4,7 @@ import { DEFAULT_VIEW } from "@/features/view/View.constants";
 import useEditStore from "./store";
 
 // @ts-expect-error Import remote module
-import listItems from "items/listItems";
+import listItemsBasic from "itemsBasic/listItems";
 
 const HierarchyItems = () => {
   const mappedView = mapView(DEFAULT_VIEW);
@@ -17,8 +17,10 @@ const HierarchyItems = () => {
       <div>HierarchyItems</div>
       {mappedView.map((i) => {
         let content;
-        if (i.type === "legacy-item" && listItems.getItem) {
-          const ItemComponent = listItems.getItem(i.legacy.itemType).component;
+        if (i.type === "legacy-item" && listItemsBasic.getItem) {
+          const ItemComponent = listItemsBasic.getItem(
+            i.legacy.itemType
+          ).component;
 
           content = <ItemComponent {...i.legacy.itemProperties} />;
         }

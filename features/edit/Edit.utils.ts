@@ -1,8 +1,8 @@
 // @ts-expect-error Import remote module
-import listItems from "items/listItems";
+import listItemsBasic from "itemsBasic/listItems";
 
 export const getListItems = () => {
-  return listItems
-    .createAssetsStructure(listItems.getItems(), {})
+  return listItemsBasic
+    .createAssetsStructure(listItemsBasic.getItems(), {})
     .flatMap((item: { content: object }) => item.content);
 };
